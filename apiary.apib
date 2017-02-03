@@ -8,26 +8,26 @@ as well as desktop tools for software development, rapid prototyping and graphic
 Using API is free of charge. Icons are distributed under our [attribution license](http://icons8.com/license/),
 [paid license](http://icons8.com/buy/) or custom volume license.
 
-## Icons [/api/iconsets/]
+## Icons v3 [/api/iconsets/v3]
 
 ### Search Icons [GET /api/iconsets/v3/search?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
 
 + Parameters
     + term: `home` (string, required) - the name or tag of the icon or any other phrase.
         e.g. use "@home" to find icons with the tag "home" and "=home" to find icons with the name "home"
-    + amount: `25` (number, optional) - the maximum number of icons which you'd like to receive
+    + amount (integer, optional) - the maximum number of icons which you'd like to receive
         + Default: 25
-    + offset: `0` (number, optional) - the offset from the first received result
+    + offset (integer, optional) - the offset from the first received result
         + Default: 0
-    + platform: `color` (enum[string], optional) - the platform that we are searching icons for
+    + platform (enum[string], optional) - the platform that we are searching icons for
         + Default: `all`
         + Members
             + `all`
             + `ios7`
             + `win8`
             + `win10`
-            + `android4`
-            + `android5`
+            + `android`
+            + `androidL`
             + `color`
             + `office`
     + language: `en-US` (enum[string]) - the language code
@@ -97,6 +97,51 @@ Using API is free of charge. Icons are distributed under our [attribution licens
           }
         }
         
+
+
+### List Categories [GET /api/iconsets/v3/categories?platform={platform}&language={language}]
+
+    Note: operation **List Categories** will not return categories, that have less than 10 icons.
+
++ Parameters
+    + platform (enum[string], optional) - the platform that we are searching icons for
+        + Default: `all`
+        + Members
+            + `all`
+            + `ios7`
+            + `win8`
+            + `win10`
+            + `android`
+            + `androidL`
+            + `color`
+            + `office`
+    + language: `en-US` (enum[string]) - the language code
+        + Members
+            + `en-US`
+            + `de-DE`
+            + `es-ES`
+            + `fr-FR`
+            + `pt-BR`
+            + `pl-PL`
+            + `ru-RU`
+
++ Response 200 (application/json)
+    + Attributes
+        + parameters
+            + platform (string)
+            + language (string)
+        + result
+            + categories (array[CategoryItem])
+                + (CategoryItem)
+                    + name: `Alphabet`
+                    + `api_code`: `Alphabet`
+                + (CategoryItem)
+                    + name: `Very Basic`
+                    + `api_code`: `Very_Basic`
+                + (CategoryItem)
+                    + name: `Photo and Video`
+                    + `api_code`: `Photo_Video`
+
 ## Tasks [/api/task]
 
 ### Create iconic webfont from collection [POST /api/task/create-web-font]
@@ -121,13 +166,6 @@ Using API is free of charge. Icons are distributed under our [attribution licens
             + (TaskError)
                 + code: `not_possible`
                 + description: `Icons "dog-color" and "cat-color" were excluded`
-
-+ Response 500 (application/json)
-    + Attributes
-        + messages (array)
-            + (TaskError)
-        
-
 
 
 
@@ -165,6 +203,12 @@ Using API is free of charge. Icons are distributed under our [attribution licens
 
 ## AuthArgument (object)
 + hash (string, required) - Authorization hash
+
+
+## CategoryItem (object)
++ name (string, required)
++ api_code (string, required)
+
     
 
 ## CollectionWebFontTaskArguments (object)
