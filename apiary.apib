@@ -233,6 +233,8 @@ We have a free tier sufficient for any evaluation, development, and alpha testin
 # Meta [/api/iconsets/]
 
 ## Categories [GET /api/iconsets/v3/categories?platform={platform}&language={language}]
+The operation will not return the categories that have less than 10 icons.
+We need it to test the categories without showing garbage on the production website.
 
 + Parameters
     + platform (enum[string], optional) - the platform that we are searching icons for
@@ -353,11 +355,7 @@ Icons8 allows generating the web fonts from the icons.
 
 
 
-# Group Notes
-
-## **Some Catagories Are Hidden**
-
-Operation **List Categories** will not return categories, that have less than 10 icons.
+# Group Parameters
 
 ## *Platform* Means *Style*
 
