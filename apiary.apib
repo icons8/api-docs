@@ -10,7 +10,7 @@ Using API is free of charge. Icons are distributed under our [attribution licens
 
 # Explore the Icons [/api/iconsets/v3/]
 
-## Search Icons [GET /api/iconsets/v3/search?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
+## Search [GET /api/iconsets/v3/search?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
 
 + Parameters
     + term: `home` (string, required) - the name or tag of the icon or any other phrase.
@@ -84,7 +84,69 @@ Using API is free of charge. Icons are distributed under our [attribution licens
                               + type: `social`
                               + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
 
-### Get Icons by Category [GET /api/iconsets/v3/category?category={category}&subcategory={subcategory}&amout={amount}&offset={offset}&platform={platform}&language={language}]
+### Latest [GET /api/iconsets/v3/latest?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
+
++ Parameters
+    + amount (number, optional) - the maximum number of icons which you'd like to receive
+        + Default: 25
+    + offset (number, optional) - the offset from the first received result
+        + Default: 0
+    + platform (enum[string], optional) - the style of the icons
+        + Default: `all`
+        + Members
+            + `all`
+            + `ios7`
+            + `win8`
+            + `win10`
+            + `android`
+            + `androidL`
+            + `color`
+            + `office`
+    + language: `en-US` (enum[string], required) - the language code to get localized result
+        + Members
+            + `en-US`
+            + `fr-FR`
+            + `de-DE`
+            + `it-IT`
+            + `pt-BR`
+            + `pl-PL`
+            + `ru-RU`
+            + `es-ES`
+
++ Response 200 (application/json)
+    + Attributes
+        + parameters - copy of the input parameters from the request
+            + amount (number)
+            + term (string)
+            + offset (string)
+            + platform (string)
+            + language (string)
+        + result (object) - the result of operation
+            + latest (array[IconV3Item])
+                + (IconV3Item)
+                    + id: `12229`
+                    + name: `Home`
+                    + `platform_code`: `color`
+                    + created: `2015-05-21T05:28:59+00:00`
+                    + url: `/web-app/12229/home`
+                    + `common_icon_id`: `72`
+                    + features
+                       + bitmap: `1`
+                       + vector: `1`
+                       + nolink: `1`
+                    + share
+                       + url: `http://ic8.link/12229`
+                       + png (array[object])
+                           + (object)
+                              + link: `https://maxcdn.icons8.com/Share/google/h/home.png`
+                           + (object)
+                              + type: `twitter`
+                              + link: `https://maxcdn.icons8.com/Share/twitter/h/home.png`
+                           + (object)
+                              + type: `social`
+                              + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
+
+## Category [GET /api/iconsets/v3/category?category={category}&subcategory={subcategory}&amout={amount}&offset={offset}&platform={platform}&language={language}]
 
 + Parameters
     + category: `Very_Basic` (string, required) - the code of category
@@ -159,71 +221,8 @@ Using API is free of charge. Icons are distributed under our [attribution licens
                               + type: `social`
                               + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
 
-### Get Latest Icons [GET /api/iconsets/v3/latest?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
 
-+ Parameters
-    + amount (number, optional) - the maximum number of icons which you'd like to receive
-        + Default: 25
-    + offset (number, optional) - the offset from the first received result
-        + Default: 0
-    + platform (enum[string], optional) - the style of the icons
-        + Default: `all`
-        + Members
-            + `all`
-            + `ios7`
-            + `win8`
-            + `win10`
-            + `android`
-            + `androidL`
-            + `color`
-            + `office`
-    + language: `en-US` (enum[string], required) - the language code to get localized result
-        + Members
-            + `en-US`
-            + `fr-FR`
-            + `de-DE`
-            + `it-IT`
-            + `pt-BR`
-            + `pl-PL`
-            + `ru-RU`
-            + `es-ES`
-
-+ Response 200 (application/json)
-    + Attributes
-        + parameters - copy of the input parameters from the request
-            + amount (number)
-            + term (string)
-            + offset (string)
-            + platform (string)
-            + language (string)
-        + result (object) - the result of operation
-            + latest (array[IconV3Item])
-                + (IconV3Item)
-                    + id: `12229`
-                    + name: `Home`
-                    + `platform_code`: `color`
-                    + created: `2015-05-21T05:28:59+00:00`
-                    + url: `/web-app/12229/home`
-                    + `common_icon_id`: `72`
-                    + features
-                       + bitmap: `1`
-                       + vector: `1`
-                       + nolink: `1`
-                    + share
-                       + url: `http://ic8.link/12229`
-                       + png (array[object])
-                           + (object)
-                              + link: `https://maxcdn.icons8.com/Share/google/h/home.png`
-                           + (object)
-                              + type: `twitter`
-                              + link: `https://maxcdn.icons8.com/Share/twitter/h/home.png`
-                           + (object)
-                              + type: `social`
-                              + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
-
-
-
-### Get List of Categories [GET /api/iconsets/v3/categories?platform={platform}&language={language}]
+## List Categories [GET /api/iconsets/v3/categories?platform={platform}&language={language}]
 
 + Parameters
     + platform (enum[string], optional) - the platform that we are searching icons for
@@ -266,7 +265,7 @@ Using API is free of charge. Icons are distributed under our [attribution licens
                     + `api_code`: `Photo_Video`
 
 
-### Get Totals [GET /api/iconsets/v3/total?since={since}]
+## Totals [GET /api/iconsets/v3/total?since={since}]
 
 + Parameters
     + since: `2014-12-31` (string, optional) - the optional date to calculate the total number of icons that were created after it.
