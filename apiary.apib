@@ -1,16 +1,25 @@
 FORMAT: 1A
 HOST: https://api.icons8.com/
 
-# Icons8
+# Icons8 API
 
-Icons8 allows software developers to embed icons into web services and applications,
-as well as desktop tools for software development, rapid prototyping and graphic design. 
-Using API is free of charge. Icons are distributed under our [attribution license](http://icons8.com/license/),
-[paid license](http://icons8.com/buy/) or custom volume license.
+Icons8 API allows us to search and receive our icons. Our icons have the functionality of many applications, including:
+* Graphics and text editors, such as Gravit 
+* Template customization services, such as Canva
+* Any application with customization, such as TimeTune.
 
-# Explore the Icons [/api/iconsets/v3/]
+## Getting Started
 
-## Search [GET /api/iconsets/v3/search?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
+To get started, please contact us to obtain an API key.
+
+## Pricing
+
+We have a free tier sufficient for any evaluation, development, and alpha testing. After that, we ask you to purchase a license, which starts at $100/month. For the established open source projects, we provide the license for free.
+
+
+# Search [/api/iconsets]
+
+## By Keyword [GET /api/iconsets/v3/search?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
 
 + Parameters
     + term: `home` (string, required) - the name or tag of the icon or any other phrase.
@@ -84,69 +93,8 @@ Using API is free of charge. Icons are distributed under our [attribution licens
                               + type: `social`
                               + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
 
-### Latest [GET /api/iconsets/v3/latest?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
 
-+ Parameters
-    + amount (number, optional) - the maximum number of icons which you'd like to receive
-        + Default: 25
-    + offset (number, optional) - the offset from the first received result
-        + Default: 0
-    + platform (enum[string], optional) - the style of the icons
-        + Default: `all`
-        + Members
-            + `all`
-            + `ios7`
-            + `win8`
-            + `win10`
-            + `android`
-            + `androidL`
-            + `color`
-            + `office`
-    + language: `en-US` (enum[string], required) - the language code to get localized result
-        + Members
-            + `en-US`
-            + `fr-FR`
-            + `de-DE`
-            + `it-IT`
-            + `pt-BR`
-            + `pl-PL`
-            + `ru-RU`
-            + `es-ES`
-
-+ Response 200 (application/json)
-    + Attributes
-        + parameters - copy of the input parameters from the request
-            + amount (number)
-            + term (string)
-            + offset (string)
-            + platform (string)
-            + language (string)
-        + result (object) - the result of operation
-            + latest (array[IconV3Item])
-                + (IconV3Item)
-                    + id: `12229`
-                    + name: `Home`
-                    + `platform_code`: `color`
-                    + created: `2015-05-21T05:28:59+00:00`
-                    + url: `/web-app/12229/home`
-                    + `common_icon_id`: `72`
-                    + features
-                       + bitmap: `1`
-                       + vector: `1`
-                       + nolink: `1`
-                    + share
-                       + url: `http://ic8.link/12229`
-                       + png (array[object])
-                           + (object)
-                              + link: `https://maxcdn.icons8.com/Share/google/h/home.png`
-                           + (object)
-                              + type: `twitter`
-                              + link: `https://maxcdn.icons8.com/Share/twitter/h/home.png`
-                           + (object)
-                              + type: `social`
-                              + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
-
-## Category [GET /api/iconsets/v3/category?category={category}&subcategory={subcategory}&amout={amount}&offset={offset}&platform={platform}&language={language}]
+## By Category [GET /api/iconsets/v3/category?category={category}&subcategory={subcategory}&amout={amount}&offset={offset}&platform={platform}&language={language}]
 
 + Parameters
     + category: `Very_Basic` (string, required) - the code of category
@@ -221,8 +169,70 @@ Using API is free of charge. Icons are distributed under our [attribution licens
                               + type: `social`
                               + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
 
+## Latest [GET /api/iconsets/v3/latest?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
 
-## List Categories [GET /api/iconsets/v3/categories?platform={platform}&language={language}]
++ Parameters
+    + amount (number, optional) - the maximum number of icons which you'd like to receive
+        + Default: 25
+    + offset (number, optional) - the offset from the first received result
+        + Default: 0
+    + platform (enum[string], optional) - the style of the icons
+        + Default: `all`
+        + Members
+            + `all`
+            + `ios7`
+            + `win8`
+            + `win10`
+            + `android`
+            + `androidL`
+            + `color`
+            + `office`
+    + language: `en-US` (enum[string], required) - the language code to get localized result
+        + Members
+            + `en-US`
+            + `fr-FR`
+            + `de-DE`
+            + `it-IT`
+            + `pt-BR`
+            + `pl-PL`
+            + `ru-RU`
+            + `es-ES`
+
++ Response 200 (application/json)
+    + Attributes
+        + parameters - copy of the input parameters from the request
+            + amount (number)
+            + term (string)
+            + offset (string)
+            + platform (string)
+            + language (string)
+        + result (object) - the result of operation
+            + latest (array[IconV3Item])
+                + (IconV3Item)
+                    + id: `12229`
+                    + name: `Home`
+                    + `platform_code`: `color`
+                    + created: `2015-05-21T05:28:59+00:00`
+                    + url: `/web-app/12229/home`
+                    + `common_icon_id`: `72`
+                    + features
+                       + bitmap: `1`
+                       + vector: `1`
+                       + nolink: `1`
+                    + share
+                       + url: `http://ic8.link/12229`
+                       + png (array[object])
+                           + (object)
+                              + link: `https://maxcdn.icons8.com/Share/google/h/home.png`
+                           + (object)
+                              + type: `twitter`
+                              + link: `https://maxcdn.icons8.com/Share/twitter/h/home.png`
+                           + (object)
+                              + type: `social`
+                              + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
+# Meta [/api/iconsets/]
+
+## Categories [GET /api/iconsets/v3/categories?platform={platform}&language={language}]
 
 + Parameters
     + platform (enum[string], optional) - the platform that we are searching icons for
@@ -286,10 +296,9 @@ Using API is free of charge. Icons are distributed under our [attribution licens
                    + `api_code`: `ios7`
                    + total: `7379`
 
+# Web Fonts [/api/task]
 
-## Make web-fonts  [/api/task]
-
-### Make Web-font From Icons Collection [POST /api/task/web-font/collection]
+## From a Collection [POST /api/task/web-font/collection]
 
 + Request (application/json)
     + Attributes
@@ -312,7 +321,7 @@ Using API is free of charge. Icons are distributed under our [attribution licens
                 + code: `not_possible`
                 + description: `Icons "dog-color" and "cat-color" were excluded`
 
-### Make Web-font From Separate Icons [POST /api/task/web-font/icons]
+## From Separate Icons [POST /api/task/web-font/icons]
 
 + Request (application/json)
     From separate SVG images
@@ -399,7 +408,7 @@ The primary language is English - if we did not translate something, it will be 
 # Data Structures
 
 ## AuthArgument (object)
-+ hash (string, required) - Authorization hash
++ hash: `api-demo-user` (string, required) - Authorization hash
 
 
 ## CompactCategoryV3Item (object)
@@ -501,8 +510,8 @@ The primary language is English - if we did not translate something, it will be 
 
 ## CollectionWebFontTaskArguments (object)
 + arguments
-    + collection (string, required) - collection identifier
-    + font_name (string, required) - name of iconic webfont
+    + collection: `bef787ce-41ad-4424-8e0e-19ce78e104c3` (string, required) - collection identifier
+    + font_name: `Material Very Basic` (string, required) - name of iconic webfont
         + Default: `font_icons8`
     + css_prefix (string) - prefix for CSS rules, used to generate LESS/SCSS
         + Default: `icons8`
