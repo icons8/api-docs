@@ -23,26 +23,21 @@ To get started, please [contact us](https://icons8.com/contact) to obtain an API
 
 ## Pricing
 
-We have a free tier sufficient for any evaluation, development, and alpha testing. After that, we ask you to purchase a license, which starts at $100/month. 
-
-For the established open source projects, we provide the license for free.
-
+Our API license starts at $100/month. 
 
 # Search [/api/iconsets]
 
-## By Keyword [GET /api/iconsets/v3/search?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
+## By Keyword [GET /api/iconsets/v3/search?term={term}&amount={amount}&offset={offset}&platform={platform}&language={language}&auth-id={auth-id}]
 
 + Parameters
     + term: `home` (string, required) - the name or tag of the icon or any other phrase.
         e.g. use "@home" to find icons with the tag "home" and "=home" to find icons with the name "home"
-    + amount (number, optional) - the maximum number of icons which you'd like to receive
+    + amount (number, optional) - the maximum number of common icons which you'd like to receive. Please pay your attention that in this operation this parameter means the number of the Common Icons, so that if you will not set the platform, the actual number of the icons in the result will be greater, because all of the icons will be returned in all the platforms we have. 
         + Default: 25
     + offset (number, optional) - the offset from the first received result
         + Default: 0
     + platform (enum[string], optional) - the style of the icons
-        + Default: `all`
         + Members
-            + `all`
             + `ios7`
             + `win8`
             + `win10`
@@ -105,19 +100,17 @@ For the established open source projects, we provide the license for free.
                               + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
 
 
-## By Category [GET /api/iconsets/v3/category?category={category}&subcategory={subcategory}&amout={amount}&offset={offset}&platform={platform}&language={language}]
+## By Category [GET /api/iconsets/v3/category?category={category}&subcategory={subcategory}&amount={amount}&offset={offset}&platform={platform}&language={language}]
 
 + Parameters
-    + category: `Very_Basic` (string, required) - the code of category
+    + category: `free_icons` (string, required) - the code of category
     + subcategory: `home_appliances` (string, optional) - the code of subcategory
     + amount (number, optional) - the maximum number of icons which you'd like to receive
         + Default: 25
     + offset (number, optional) - the offset from the first received result
         + Default: 0
     + platform (enum[string], optional) - the style of the icons
-        + Default: `all`
         + Members
-            + `all`
             + `ios7`
             + `win8`
             + `win10`
@@ -180,7 +173,7 @@ For the established open source projects, we provide the license for free.
                               + type: `social`
                               + link: `https://maxcdn.icons8.com/Share/social/h/home.png`
 
-## Latest [GET /api/iconsets/v3/latest?term={term}&amout={amount}&offset={offset}&platform={platform}&language={language}]
+## Latest [GET /api/iconsets/v3/latest?term={term}&amount={amount}&offset={offset}&platform={platform}&language={language}]
 
 + Parameters
     + amount (number, optional) - the maximum number of icons which you'd like to receive
@@ -188,9 +181,7 @@ For the established open source projects, we provide the license for free.
     + offset (number, optional) - the offset from the first received result
         + Default: 0
     + platform (enum[string], optional) - the style of the icons
-        + Default: `all`
         + Members
-            + `all`
             + `ios7`
             + `win8`
             + `win10`
@@ -249,9 +240,7 @@ We need it to test the categories without showing garbage on the production webs
 
 + Parameters
     + platform (enum[string], optional) - the platform that we are searching icons for
-        + Default: `all`
         + Members
-            + `all`
             + `ios7`
             + `win8`
             + `win10`
@@ -513,7 +502,6 @@ The primary language is English - if we do not translate something, it will be i
 + name (string, required) icons style name
 + `api_code` (enum[string], required) - icons style code; in other places it named `plarform` or `platform_api_code`
     + Members
-        + `all`
         + `ios7`
         + `win8`
         + `win10`
