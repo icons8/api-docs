@@ -27,13 +27,84 @@ Our API license starts at $100/month.
 
 # Search [/api/iconsets]
 
-## By Keyword [GET /api/iconsets/v3/search?term={term}&amount={amount}&offset={offset}&platform={platform}&language={language}&auth-id={auth-id}]
+## By Keyword v4 [GET /api/iconsets/v4/search?term={term}&amount={amount}&offset={offset}&platform={platform}&language={language}&exact_amount={exact_amount}]
 
 + Parameters
     + term: `home` (string, required) - the name or tag of the icon or any other phrase.
         e.g. use "@home" to find icons with the tag "home" and "=home" to find icons with the name "home"
-    + amount (number, optional) - the maximum number of common icons which you'd like to receive. Please pay your attention that in this operation this parameter means the number of the Common Icons, so that if you will not set the platform, the actual number of the icons in the result will be greater, because all of the icons will be returned in all the platforms we have. 
+    + amount (number, optional) - the maximum number of icons which you'd like to receive (will be multiplied by platforms count, if you didn't specify the platform and didn't set the 'exact_amount' parameter)
+        + Default: 50
+    + offset (number, optional) - the offset from the first received result
+        + Default: 0
+    + platform (enum[string], optional) - the style of the icons
+        + Members
+            + `all`
+            + `ios7`
+            + `ios11`
+            + `win8`
+            + `win10`
+            + `android`
+            + `androidL`
+            + `color`
+            + `office`
+            + `ultraviolet`
+            + `nolan`
+            + `p1em`
+            + `dotty`
+            + `dusk`
+            + `Dusk_Wired`
+            + `cotton`
+            + `doodle`
+            + `flat_round`
+        + Default: `all`
+    + language (enum[string], optional) - the language code to get localized result
+        + Members
+            + `en-US`
+            + `fr-FR`
+            + `de-DE`
+            + `it-IT`
+            + `pt-BR`
+            + `pl-PL`
+            + `ru-RU`
+            + `es-ES`
+            + `zh-CN`
+            + `ja-JP`
+        + Default: `en-US`
+
++ Response 200 (application/json)
+    + Attributes
+        + parameters - copy of the input parameters from the request
+            + amount `50`
+            + term: `sea`
+            + offset: `0`
+            + platform: `win10`
+            + language: `en-US`
+        + icons (array[object]) - the result of operation
+            + (object)
+                + id: `23756`
+                + commonId: `3022`
+                + name: `Sea Waves`
+                + commonName: `sea-waves`
+                + platform: `win10`
+                + timestamp: 1461024690
+                + category: `Travel`
+            + (object)
+                + id: `19995`
+                + commonId: `3035`
+                + name: `Sea Star`
+                + commonName: `starfish`
+                + platform: `win10`
+                + timestamp: 1450119085
+                + category: `Animals`
+
+## By Keyword v3 [GET /api/iconsets/v3/search?term={term}&amount={amount}&offset={offset}&platform={platform}&language={language}&exact_amount={exact_amount}]
+
++ Parameters
+    + term: `home` (string, required) - the name or tag of the icon or any other phrase.
+        e.g. use "@home" to find icons with the tag "home" and "=home" to find icons with the name "home"
+    + amount (number, optional) - the maximum number of icons which you'd like to receive (will be multiplied by platforms count, if you didn't specify the platform and didn't set the 'exact_amount' parameter)
         + Default: 25
+    + exact_amount (boolean, optional) - set it to 'true' if you'd like to receive the exact amount of icons, not multiplied by platforms count 
     + offset (number, optional) - the offset from the first received result
         + Default: 0
     + platform (enum[string], optional) - the style of the icons
@@ -386,6 +457,8 @@ Icon names, categories and tags are localized. Here's the list of supported lang
 `pl-PL` | Polish
 `ru-RU` | Russian
 `es-ES` | Spanish
+`zh-CN` | Chinese
+`ja-JP` | Japanese
 
 The primary language is English - if we do not translate something, it will be in English.
 
