@@ -1,4 +1,6 @@
-# Icons8 API Docs
+# Use a [new version](https://icons8.github.io/icons8-docs/) of our API docs instead
+
+# Icons8 API Docs (Old)
 
 This repository contains the documentation in the [API Blueprint](https://github.com/apiaryio/api-blueprint/) format. 
 
