@@ -23,3 +23,8 @@ Some examples of what you can do with our icons:
 * **Any application with customization.** [TimeTune](http://timetune.center/) uses our icons to customize the activities.
 
 [Continue reading](http://docs.icons8.apiary.io/)
+
+
+## More from Icons8
+
+Beyond the API — browse the full libraries: **[1.5M+ icons](https://icons8.com/icons?utm_source=github)** in 132 styles ([iOS 27](https://icons8.com/icons/ios?utm_source=github), [Color](https://icons8.com/icons/color?utm_source=github), [3D Fluency](https://icons8.com/icons/3d-fluency?utm_source=github)) and **[110,000+ illustrations](https://icons8.com/illustrations?utm_source=github)** in 345 styles.
